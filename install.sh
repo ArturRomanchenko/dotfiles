@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# Установка необходимых пакетов
-sudo pacman -Syu --noconfirm \
-    bspwm sxhkd polybar rofi ranger git fastfetch feh flameshot lxappearance \
-    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono \
-    thunar alsa-utils cmus pavucontrol
+###############################################
+#                                             #
+#                All packages                 #
+#                                             #
+###############################################
 
-# Установка базовых инструментов разработки и yay
+
+# Installing necessary packages
+sudo pacman -Syu --noconfirm \
+    xorg-server xorg-xinit lightdm lightdm-gtk-greeter xorg-xkb-util bspwm sxhkd polybar rofi ranger git lxappearance \
+    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono \
+    thunar alsa-utils cmus pavucontrol firefox htop fastfetch feh flameshot
+
+# Installing base development tools and yay
 sudo pacman -S --needed --noconfirm base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -14,19 +21,30 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
-# Установка пакета из AUR
+# Installing a package from AUR
 yay -S --noconfirm cava
 
-# Настройка переменной окружения для qt5ct
+# Setting up environment variable for qt5ct
 echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment > /dev/null
 
+
+
+###############################################
+#                                             #
+#      	Transferring all configurations       #
+#                                             #
+###############################################
+
+
+
+# Creating standart directories
 mkdir -p ~/Downloads ~/Images ~/Music ~/Videos ~/Documents
 cp -r ./Images/* ~/Images/
 
-# Создание конфигурационных директорий
+# Creating configuration directories
 mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/cmus
 
-# Копирование конфигурационных файлов
+# Copying configuration files
 cp -r ./config/bspwm/* ~/.config/bspwm/
 cp -r ./config/sxhkd/* ~/.config/sxhkd/
 cp -r ./config/flameshot/* ~/.config/flameshot/
@@ -37,24 +55,24 @@ cp -r ./config/ranger/* ~/.config/ranger/
 cp -r ./config/rofi/* ~/.config/rofi/
 cp -r ./config/cmus/* ~/.config/cmus/
 
-# Копирование дополнительных скриптов и файлов
+# Copying additional scripts and files
 cp -r ./bin/* ~/bin/
-cp ./fehbg ~/
-cp ./xinitrc ~/
-cp ./gtkrc-2.0 ~/
+cp ./fehbg ~/.fehbg
+cp ./xinitrc ~/.xinitrc
+cp ./gtkrc-2.0 ~/.gtkrc-2.0
 
-# Установка шрифтов
+# Installing fonts
 mkdir -p ~/.local/share/fonts
 cp -r ./fonts/* ~/.local/share/fonts/
 
-# Обновление кэша шрифтов
+# Updating font cache
 fc-cache -fv
 
-# Установка темы
+# Installing themes
 mkdir -p ~/.themes
 cp -r ./themes/* ~/.themes/
 
-# Сделать скрипты исполняемыми
+# Making scripts executable
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/bin/*
