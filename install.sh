@@ -8,8 +8,8 @@
 
 
 # Installing necessary packages
-sudo pacman -Syu --noconfirm \
-    xorg-server xorg-xinit lightdm lightdm-gtk-greeter xorg-xkb-util bspwm sxhkd polybar rofi ranger git lxappearance \
+sudo pacman -S --needed --noconfirm \
+    xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git lxappearance \
     qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono \
     thunar alsa-utils cmus pavucontrol firefox htop fastfetch feh flameshot
 
@@ -56,6 +56,7 @@ cp -r ./config/rofi/* ~/.config/rofi/
 cp -r ./config/cmus/* ~/.config/cmus/
 
 # Copying additional scripts and files
+mkdir -p bin
 cp -r ./bin/* ~/bin/
 cp ./fehbg ~/.fehbg
 cp ./xinitrc ~/.xinitrc
