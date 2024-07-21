@@ -10,7 +10,7 @@
 # Installing necessary packages
 sudo pacman -S --needed --noconfirm \
     xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git lxappearance \
-    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono \
+    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim i3lock \
     thunar alsa-utils cmus pavucontrol firefox htop fastfetch feh flameshot
 
 # Installing base development tools and yay
@@ -57,8 +57,7 @@ cp -r ./config/cmus/* ~/.config/cmus/
 cp -r ./config/alacritty/* ~/.config/alacritty/
 
 # Copying additional scripts and files
-mkdir -p bin
-cp -r ./bin/* ~/bin/
+cp -r bin/ ~/
 cp ./fehbg ~/.fehbg
 cp ./xinitrc ~/.xinitrc
 cp ./gtkrc-2.0 ~/.gtkrc-2.0

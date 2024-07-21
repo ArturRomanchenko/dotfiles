@@ -27,6 +27,9 @@ $HOME/.config/polybar/launch.sh
 # wallpaper
 feh --bg-fill ~/Images/wall-05.webp
 
+# Dunst
+dunst -config $HOME/.config/bspwm/dunstrc &
+
 # autostart
 flameshot &
 picom &
