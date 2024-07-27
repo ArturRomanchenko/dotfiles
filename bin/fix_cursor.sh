@@ -1,4 +1,0 @@
-lxappearance
-
-exit
-
