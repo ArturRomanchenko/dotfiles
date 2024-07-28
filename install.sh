@@ -10,8 +10,8 @@
 # Installing necessary packages
 sudo pacman -S --needed --noconfirm \
     xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git lxappearance \
-    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim i3lock \
-    thunar alsa-utils cmus pavucontrol firefox htop fastfetch feh flameshot
+    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd \
+    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot i3clock code
 
 # Installing base development tools and yay
 sudo pacman -S --needed --noconfirm base-devel git
