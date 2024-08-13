@@ -32,9 +32,12 @@ Print
 super + m
 	alacritty -e cmus
 
-# Switch keyboard layout
-alt + Shift_L
-	/home/user/bin/change_language.sh
+# Change language
+Alt_L + shift
+	sh $HOME/bin/change_language.sh
+
+Shift_L + alt
+	sh $HOME/bin/change_language.sh
 
 #
 # wm independent hotkeys
@@ -55,6 +58,10 @@ super + Escape
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
+
+# reloads sxhkd configuration:
+super + Escape + r
+    pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config' -t 1500
 
 # close and kill
 super + {_,shift + }w

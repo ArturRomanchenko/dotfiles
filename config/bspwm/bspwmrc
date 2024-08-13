@@ -39,6 +39,11 @@ feh --bg-fill ~/Images/wall-05.webp
 # Dunst
 dunst -config $HOME/.config/bspwm/dunstrc &
 
+# fix pointer
+xsetroot -cursor_name left_ptr
+
+# start compositor
+picom $HOME/.config/picom/picom.conf &
+
 # autostart
 flameshot &
-picom &

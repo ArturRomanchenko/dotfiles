@@ -11,9 +11,9 @@ sudo pacman -Syu --noconfirm
 
 # List of essential packages
 packages=(
-    xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git lxappearance
+    xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git
     qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
-    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot code
+    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot code lxappearance
 )
 
 # Install the essential packages
