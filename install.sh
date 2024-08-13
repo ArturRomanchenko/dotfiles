@@ -69,8 +69,8 @@ cp ./xinitrc ~/.xinitrc
 cp ./gtkrc-2.0 ~/.gtkrc-2.0
 
 # Installing fonts
-mkdir -p ~/.local/share/fonts
-cp -r ./fonts/* ~/.local/share/fonts/
+#mkdir -p ~/.local/share/fonts
+#cp -r ./fonts/* ~/.local/share/fonts/
 
 # Updating font cache
 fc-cache -fv
