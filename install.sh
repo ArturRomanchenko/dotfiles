@@ -84,5 +84,4 @@ chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/bin/*
 
-echo "Installation completed. Please restart your session or window manager."
-
+echo "Installation completed. Please restart your session or window manager. (startx)"
