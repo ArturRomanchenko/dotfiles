@@ -34,7 +34,7 @@ bspc rule -a Screenkey manage=off
 $HOME/.config/polybar/launch.sh
 
 # wallpaper
-feh --bg-fill ~/Images/wall-05.webp
+feh --bg-fill ~/Images/wallpaper/wall-05.png
 
 # Dunst
 dunst -config $HOME/.config/bspwm/dunstrc &
