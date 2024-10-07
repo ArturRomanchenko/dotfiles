@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#
 #  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
 #  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
 #  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
@@ -23,7 +24,8 @@ sudo pacman -Syu --noconfirm
 packages=(
     xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git
     qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
-    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot code lxappearance
+    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot code lxappearance obsidian
+    flatpak openssh dunst xclip imagemagick gpick gnome-boxes
 )
 
 # Install the essential packages
@@ -38,7 +40,7 @@ cd ..
 rm -rf yay
 
 # Installing a package from AUR
-yay -S --noconfirm cava
+yay -S --noconfirm cava google-chrome
 
 # Setting up environment variable for qt5ct
 echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment > /dev/null
