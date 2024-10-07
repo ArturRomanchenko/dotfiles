@@ -23,6 +23,9 @@ alt + f
 super + t
 	thunar
 
+super + g
+	google-chrome-stable
+
 super + f
 	firefox
 
@@ -76,8 +79,8 @@ super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
+#super + alt + g
+#	bspc node -s biggest.window
 
 #
 # state/flags
