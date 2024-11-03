@@ -16,9 +16,6 @@ echo -e "${GREEN}
 #
 ${RESET}"
 
-# Update the system and install necessary packages
-sudo pacman -Syu --noconfirm
-
 # List of essential packages
 pkg=(
     xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
@@ -41,6 +38,9 @@ echo -e "${GREEN}
 ###############################################${RESET}"
 
 echo -e "${GREEN}${packages[@]}${RESET}"
+
+# Update the system and install necessary packages
+sudo pacman -Syu --noconfirm
 
 # Install the essential packages
 sudo pacman -S "${packages[@]}"
