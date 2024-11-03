@@ -21,12 +21,18 @@
 sudo pacman -Syu --noconfirm
 
 # List of essential packages
-packages=(
-    xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger git
-    qt5ct picom alacritty obs-studio papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
-    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot code lxappearance obsidian
-    flatpak openssh dunst xclip imagemagick gpick gnome-boxes
+pkg=(
+    xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
+    qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
+    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot lxappearance nano
+    flatpak openssh dunst xclip imagemagick gpick nano google-chrome-stable
 )
+
+dev=(
+    cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open
+)
+
+packages=("${pkg[@]}" "${dev[@]}")
 
 # Install the essential packages
 sudo pacman -S --noconfirm "${packages[@]}"
@@ -79,10 +85,6 @@ cp -r bin/ ~/
 cp ./fehbg ~/.fehbg
 cp ./xinitrc ~/.xinitrc
 cp ./gtkrc-2.0 ~/.gtkrc-2.0
-
-# Installing fonts
-#mkdir -p ~/.local/share/fonts
-#cp -r ./fonts/* ~/.local/share/fonts/
 
 # Updating font cache
 fc-cache -fv
