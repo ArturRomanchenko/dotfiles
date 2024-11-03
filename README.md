@@ -33,3 +33,23 @@
 * **Switch the window to floating mode** - `super + space`
 
 The other hotkeys are in `~/.config/sxhkd/sxhkdrc`.
+
+
+## 📣 Guide
+
+### **archinstall**
+
+* **install optional packages:** `git iwd`
+
+### Internet connection
+* **Ethernet  → does not need to do anything**
+
+### bash
+```sh 
+iwctl
+
+[iwd] station list
+[iwd] station get-networks "adapter"
+[iwd] station "adapter" connect "SSID_network"
+### (wait 10-15 seconds)
+[iwd] quit

@@ -25,7 +25,7 @@ pkg=(
     xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
     qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
     thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot lxappearance nano
-    flatpak openssh dunst xclip imagemagick gpick nano google-chrome-stable
+    flatpak openssh dunst xclip imagemagick gpick nano iwd
 )
 
 dev=(
@@ -35,7 +35,7 @@ dev=(
 packages=("${pkg[@]}" "${dev[@]}")
 
 # Install the essential packages
-sudo pacman -S --noconfirm "${packages[@]}"
+sudo pacman -S "${packages[@]}"
 
 # Installing base development tools and yay
 sudo pacman -S --needed --noconfirm base-devel git
