@@ -1,5 +1,9 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'   
+RESET='\033[0m'      
+
+echo -e "${GREEN}
 #
 #  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
 #  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
@@ -10,12 +14,7 @@
 #
 #      - https://github.com/ArturRomanchenko/dotfiles
 #
-
-###############################################
-#                                             #
-#                All packages                 #
-#                                             #
-###############################################
+${RESET}"
 
 # Update the system and install necessary packages
 sudo pacman -Syu --noconfirm
@@ -33,6 +32,15 @@ dev=(
 )
 
 packages=("${pkg[@]}" "${dev[@]}")
+
+echo -e "${GREEN}
+###############################################
+#                                             #
+#                All packages:                #
+#                                             #
+###############################################${RESET}"
+
+echo -e "${GREEN}${packages[@]}${RESET}"
 
 # Install the essential packages
 sudo pacman -S "${packages[@]}"
