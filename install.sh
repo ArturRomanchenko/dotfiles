@@ -25,7 +25,7 @@ pkg=(
 )
 
 dev=(
-    cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open
+    cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
 )
 
 packages=("${pkg[@]}" "${dev[@]}")
