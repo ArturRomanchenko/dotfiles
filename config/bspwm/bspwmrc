@@ -43,7 +43,7 @@ dunst -config $HOME/.config/bspwm/dunstrc &
 xsetroot -cursor_name left_ptr
 
 # start compositor
-picom $HOME/.config/picom/picom.conf &
+picom --config ~/.config/picom/picom.conf &
 
 # autostart
 flameshot &
