@@ -21,7 +21,7 @@ pkg=(
     xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
     qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
     thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot lxappearance nano
-    flatpak openssh dunst xclip imagemagick gpick nano iwd
+    flatpak openssh dunst xclip imagemagick gpick nano iwd wget curl
 )
 
 dev=(
@@ -105,5 +105,10 @@ cp -r ./themes/* ~/.themes/
 chmod +x ~/.config/bspwm/bspwmrc
 chmod +x ~/.config/sxhkd/sxhkdrc
 chmod +x ~/bin/*
+
+# Installing zsh for Bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+yay -S --noconfirm zsh-theme-powerlevel10k-git
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 echo "Installation completed. Please restart your session or window manager. (startx)"

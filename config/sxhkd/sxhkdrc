@@ -35,6 +35,9 @@ Print
 super + m
 	alacritty -e cmus
 
+super + c
+	code
+
 # Change language
 Alt_L + shift
 	sh $HOME/bin/change_language.sh
@@ -42,6 +45,9 @@ Alt_L + shift
 Shift_L + alt
 	sh $HOME/bin/change_language.sh
 
+super + p
+	sh $HOME/bin/xcolor-pick
+	
 #
 # wm independent hotkeys
 #
@@ -163,3 +169,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+	
