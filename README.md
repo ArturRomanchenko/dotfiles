@@ -26,7 +26,7 @@
 * **Recognize the color on the screen** - `super + shift + x`
 * **Launch Firefox** - `super + f`
 * **Close the window that is in focus** - `super + w`
-* **Take a screenshot** - `print`
+* **Take a screenshot** - `super + shift + s`
 * **Restart bspwm** - `ctrl + shift + r`
 * **Switch to another desktop** - `super + 1/6`
 * **Move the window to another desktop** - `super + shift + 1/6`

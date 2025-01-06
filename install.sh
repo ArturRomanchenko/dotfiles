@@ -17,33 +17,11 @@ echo -e "${GREEN}
 ${RESET}"
 
 # List of essential packages
-pkg=(
-    xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
-    qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
-    thunar pulseaudio cmus pavucontrol firefox htop fastfetch nitrogen flameshot lxappearance nano
-    flatpak openssh dunst xclip imagemagick gpick nano iwd wget curl
-)
 
-dev=(
-    cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
-)
-
-packages=("${pkg[@]}" "${dev[@]}")
-
-echo -e "${GREEN}
-###############################################
-#                                             #
-#                All packages:                #
-#                                             #
-###############################################${RESET}"
-
-echo -e "${GREEN}${packages[@]}${RESET}"
+sudo pacman -S --needed --noconfirm xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd thunar pulseaudio cmus pavucontrol firefox htop fastfetch nitrogen flameshot lxappearance nano flatpak openssh dunst xclip imagemagick gpick nano iwd wget curl cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
 
 # Update the system and install necessary packages
-sudo pacman -Syu --noconfirm
-
-# Install the essential packages
-sudo pacman -S "${packages[@]}"
+sudo pacman -Syu
 
 # Installing base development tools and yay
 sudo pacman -S --needed --noconfirm base-devel git
