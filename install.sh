@@ -20,7 +20,7 @@ ${RESET}"
 pkg=(
     xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger
     qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd
-    thunar pulseaudio cmus pavucontrol firefox htop fastfetch feh flameshot lxappearance nano
+    thunar pulseaudio cmus pavucontrol firefox htop fastfetch nitrogen flameshot lxappearance nano
     flatpak openssh dunst xclip imagemagick gpick nano iwd wget curl
 )
 
@@ -74,7 +74,7 @@ mkdir -p ~/Downloads ~/Images ~/Music ~/Videos ~/Documents
 cp -r ./Images/* ~/Images/
 
 # Creating configuration directories
-mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/cmus ~/.config/alacritty
+mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/cmus ~/.config/alacritty ~/.config/nitrogen
 
 # Copying configuration files
 cp -r ./config/bspwm/* ~/.config/bspwm/
@@ -87,10 +87,10 @@ cp -r ./config/ranger/* ~/.config/ranger/
 cp -r ./config/rofi/* ~/.config/rofi/
 cp -r ./config/cmus/* ~/.config/cmus/
 cp -r ./config/alacritty/* ~/.config/alacritty/
+cp -r ./config/nitrogen/* ~/.config/nitrogen/
 
 # Copying additional scripts and files
 cp -r bin/ ~/
-cp ./fehbg ~/.fehbg
 cp ./xinitrc ~/.xinitrc
 cp ./gtkrc-2.0 ~/.gtkrc-2.0
 

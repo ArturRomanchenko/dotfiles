@@ -13,12 +13,8 @@
 # dotfiles hotkey
 #
 
-# Launch Rofi Menu
 super + {d,x}
     {rofi -show drun, sh $HOME/bin/powermenu}
-
-alt + f
-	alacritty -e ranger
 
 super + t
 	thunar
@@ -27,9 +23,9 @@ super + g
 	google-chrome-stable
 
 super + f
-	firefox
+	alacritty -e ranger
 
-Print
+super + shift + s
     flameshot gui
 
 super + m
@@ -38,6 +34,9 @@ super + m
 super + c
 	code
 
+super + n
+	nitrogen 
+
 # Change language
 Alt_L + shift
 	sh $HOME/bin/change_language.sh
@@ -45,9 +44,10 @@ Alt_L + shift
 Shift_L + alt
 	sh $HOME/bin/change_language.sh
 
+# Pick corrent color
 super + p
 	sh $HOME/bin/xcolor-pick
-	
+
 #
 # wm independent hotkeys
 #
@@ -169,4 +169,3 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-	
