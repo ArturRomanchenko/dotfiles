@@ -24,7 +24,7 @@
 * **Switch the layout** - `shift + alt`
 * **Open the application menu** - `super + d`
 * **Recognize the color on the screen** - `super + shift + x`
-* **Launch Firefox** - `super + f`
+* **Launch Browser** - `super + g`
 * **Close the window that is in focus** - `super + w`
 * **Take a screenshot** - `super + shift + s`
 * **Restart bspwm** - `ctrl + shift + r`
