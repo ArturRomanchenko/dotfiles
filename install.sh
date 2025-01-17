@@ -52,7 +52,7 @@ mkdir -p ~/Downloads ~/Images ~/Music ~/Videos ~/Documents
 cp -r ./Images/* ~/Images/
 
 # Creating configuration directories
-mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/cmus ~/.config/alacritty ~/.config/nitrogen
+mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/alacritty ~/.config/nitrogen
 
 # Copying configuration files
 cp -r ./config/bspwm/* ~/.config/bspwm/
@@ -63,7 +63,6 @@ cp -r ./config/picom/* ~/.config/picom/
 cp -r ./config/polybar/* ~/.config/polybar/
 cp -r ./config/ranger/* ~/.config/ranger/
 cp -r ./config/rofi/* ~/.config/rofi/
-cp -r ./config/cmus/* ~/.config/cmus/
 cp -r ./config/alacritty/* ~/.config/alacritty/
 cp -r ./config/nitrogen/* ~/.config/nitrogen/
 
