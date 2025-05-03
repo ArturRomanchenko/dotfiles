@@ -18,8 +18,14 @@ ${RESET}"
 
 # List of essential packages
 
-sudo pacman -S --needed --noconfirm xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd polybar rofi ranger qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono vim ttf-jetbrains-mono-nerd thunar pulseaudio cmus pavucontrol firefox htop fastfetch nitrogen flameshot lxappearance nano flatpak openssh dunst xclip imagemagick gpick nano iwd wget curl cmake make clang gcc git code obs-studio gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
-
+sudo pacman -S --noconfirm \
+  xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd \
+  polybar rofi ranger qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono \
+  vim ttf-jetbrains-mono-nerd thunar pulseaudio cmus pavucontrol firefox htop \
+  fastfetch nitrogen flameshot lxappearance nano flatpak openssh dunst xclip \
+  imagemagick gpick iwd wget curl cmake make clang gcc git code obs-studio \
+  gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
+  
 # Update the system and install necessary packages
 sudo pacman -Syu
 
