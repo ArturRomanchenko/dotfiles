@@ -7,91 +7,87 @@ echo -e "${GREEN}
 #
 #  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
 #  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
-#  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  ██████╔╝
-#  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
-#  ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
-#  ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝  ╚═╝
+#  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  █████╔╝
+#  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║╚═══██╗██╔═══╝
+#  ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████║███████╗
+#  ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝
 #
 #      - https://github.com/ArturRomanchenko/dotfiles
 #
 ${RESET}"
 
-# List of essential packages
+# 1️⃣ Update the system
+sudo pacman -Syu --noconfirm
 
-sudo pacman -S --noconfirm \
-  xorg-server xorg-xinit xorg-xsetroot lightdm lightdm-gtk-greeter bspwm sxhkd \
-  polybar rofi ranger qt5ct picom alacritty papirus-icon-theme ttf-jetbrains-mono \
-  vim ttf-jetbrains-mono-nerd thunar pulseaudio cmus pavucontrol firefox htop \
-  fastfetch nitrogen flameshot lxappearance nano flatpak openssh dunst xclip \
-  imagemagick gpick iwd wget curl cmake make clang gcc git code obs-studio \
-  gnome-boxes obsidian nvidia-open nvidia nvidia-utils nvidia-settings
-  
-# Update the system and install necessary packages
-sudo pacman -Syu
+# 2️⃣ Install base development tools and essential utilities
+sudo pacman -S --needed --noconfirm base-devel git vim nano wget curl
 
-# Installing base development tools and yay
-sudo pacman -S --needed --noconfirm base-devel git
+# 3️⃣ Install X server and window manager
+sudo pacman -S --needed --noconfirm xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd
+
+# 4️⃣ Desktop utilities
+sudo pacman -S --needed --noconfirm polybar rofi picom alacritty nitrogen flameshot
+
+# 5️⃣ Audio and multimedia
+sudo pacman -S --needed --noconfirm pulseaudio pavucontrol cmus
+
+# 6️⃣ Browsers and utilities
+sudo pacman -S --needed --noconfirm firefox thunar htop ranger flatpak lxappearance xclip imagemagick gpick cmake make clang gcc
+
+# 7️⃣ NVIDIA drivers (optional)
+sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings
+
+# 8️⃣ Install yay (AUR helper)
+cd ~
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
-# Installing a package from AUR
-yay -S --noconfirm cava google-chrome
+# 9️⃣ Install AUR packages
+yay -S --noconfirm cava google-chrome obsidian zsh-theme-powerlevel10k-git
 
-# Setting up environment variable for qt5ct
+# 10️⃣ Set environment variable for Qt5 theme
 echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment > /dev/null
 
-
-
-###############################################
-#                                             #
-#      	Transferring all configurations       #
-#                                             #
-###############################################
-
-
-
-# Creating standart directories
+# 11️⃣ Create standard directories
 mkdir -p ~/Downloads ~/Images ~/Music ~/Videos ~/Documents
-cp -r ./Images/* ~/Images/
 
-# Creating configuration directories
-mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi ~/.config/alacritty ~/.config/nitrogen
+# 12️⃣ Create configuration directories
+mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 \
+         ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi \
+         ~/.config/alacritty ~/.config/nitrogen
 
-# Copying configuration files
-cp -r ./config/bspwm/* ~/.config/bspwm/
-cp -r ./config/sxhkd/* ~/.config/sxhkd/
-cp -r ./config/flameshot/* ~/.config/flameshot/
-cp -r ./config/gtk-3.0/* ~/.config/gtk-3.0/
-cp -r ./config/picom/* ~/.config/picom/
-cp -r ./config/polybar/* ~/.config/polybar/
-cp -r ./config/ranger/* ~/.config/ranger/
-cp -r ./config/rofi/* ~/.config/rofi/
-cp -r ./config/alacritty/* ~/.config/alacritty/
-cp -r ./config/nitrogen/* ~/.config/nitrogen/
+# 13️⃣ Copy configuration files (if they exist)
+cp -r ./config/bspwm/* ~/.config/bspwm/ 2>/dev/null
+cp -r ./config/sxhkd/* ~/.config/sxhkd/ 2>/dev/null
+cp -r ./config/flameshot/* ~/.config/flameshot/ 2>/dev/null
+cp -r ./config/gtk-3.0/* ~/.config/gtk-3.0/ 2>/dev/null
+cp -r ./config/picom/* ~/.config/picom/ 2>/dev/null
+cp -r ./config/polybar/* ~/.config/polybar/ 2>/dev/null
+cp -r ./config/ranger/* ~/.config/ranger/ 2>/dev/null
+cp -r ./config/rofi/* ~/.config/rofi/ 2>/dev/null
+cp -r ./config/alacritty/* ~/.config/alacritty/ 2>/dev/null
+cp -r ./config/nitrogen/* ~/.config/nitrogen/ 2>/dev/null
 
-# Copying additional scripts and files
-cp -r bin/ ~/
-cp ./xinitrc ~/.xinitrc
-cp ./gtkrc-2.0 ~/.gtkrc-2.0
+# 14️⃣ Copy additional scripts and files
+cp -r bin/ ~/ 2>/dev/null
+cp ./xinitrc ~/.xinitrc 2>/dev/null
+cp ./gtkrc-2.0 ~/.gtkrc-2.0 2>/dev/null
 
-# Updating font cache
+# 15️⃣ Update font cache
 fc-cache -fv
 
-# Installing themes
+# 16️⃣ Install themes
 mkdir -p ~/.themes
-cp -r ./themes/* ~/.themes/
+cp -r ./themes/* ~/.themes/ 2>/dev/null
 
-# Making scripts executable
-chmod +x ~/.config/bspwm/bspwmrc
-chmod +x ~/.config/sxhkd/sxhkdrc
-chmod +x ~/bin/*
+# 17️⃣ Make scripts executable
+chmod +x ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/bin/* 2>/dev/null
 
-# Installing zsh for Bash
+# 18️⃣ Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-yay -S --noconfirm zsh-theme-powerlevel10k-git
-echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
 
-echo "Installation completed. Please restart your session or window manager. (startx)"
+echo -e "${GREEN}Installation completed. Please restart your session or run startx.${RESET}"
