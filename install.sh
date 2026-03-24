@@ -1,93 +1,122 @@
 #!/bin/bash
+set -euo pipefail
 
-GREEN='\033[0;32m'   
-RESET='\033[0m'      
+LOG=install.log
+exec > >(tee -i $LOG)
+exec 2>&1
 
-echo -e "${GREEN}
-#
-#  ██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
-#  ██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
-#  ██║     ███████║██║   ██║██╔██╗ ██║██║     ███████║█████╗  █████╔╝
-#  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║╚═══██╗██╔═══╝
-#  ███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████║███████╗
-#  ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝
-#
-#      - https://github.com/ArturRomanchenko/dotfiles
-#
-${RESET}"
+echo "Starting installation..."
 
-# 1️⃣ Update the system
+# =========================
+# CHECK REQUIRED FILES
+# =========================
+[ -f ./xinitrc ] || { echo "xinitrc missing"; exit 1; }
+[ -d ./config/bspwm ] || { echo "bspwm config missing"; exit 1; }
+[ -d ./config/sxhkd ] || { echo "sxhkd config missing"; exit 1; }
+
+# =========================
+# UPDATE SYSTEM
+# =========================
 sudo pacman -Syu --noconfirm
 
-# 2️⃣ Install base development tools and essential utilities
-sudo pacman -S --needed --noconfirm base-devel git vim nano wget curl
+# =========================
+# BASE PACKAGES
+# =========================
+sudo pacman -S --needed --noconfirm \
+  base-devel git vim nano wget curl
 
-# 3️⃣ Install X server and window manager
-sudo pacman -S --needed --noconfirm xorg-server xorg-xinit lightdm lightdm-gtk-greeter bspwm sxhkd
+# =========================
+# XORG + WM
+# =========================
+sudo pacman -S --needed --noconfirm \
+  xorg-server xorg-xinit xorg-xrandr xorg-xsetroot \
+  lightdm lightdm-gtk-greeter \
+  bspwm sxhkd
 
-# 4️⃣ Desktop utilities
-sudo pacman -S --needed --noconfirm polybar rofi picom alacritty nitrogen flameshot
+# =========================
+# DESKTOP TOOLS
+# =========================
+sudo pacman -S --needed --noconfirm \
+  polybar rofi picom alacritty nitrogen \
+  flameshot dunst lxappearance qt5ct
 
-# 5️⃣ Audio and multimedia
-sudo pacman -S --needed --noconfirm pulseaudio pavucontrol cmus
+# =========================
+# SYSTEM TOOLS
+# =========================
+sudo pacman -S --needed --noconfirm \
+  thunar firefox htop ranger flatpak \
+  pavucontrol pulseaudio cmus \
+  xclip imagemagick gpick \
+  cmake make clang gcc
 
-# 6️⃣ Browsers and utilities
-sudo pacman -S --needed --noconfirm firefox thunar htop ranger flatpak lxappearance xclip imagemagick gpick cmake make clang gcc
+# =========================
+# NVIDIA (optional)
+# =========================
+sudo pacman -S --needed --noconfirm \
+  nvidia nvidia-utils nvidia-settings || echo "Skipping NVIDIA"
 
-# 7️⃣ NVIDIA drivers (optional)
-sudo pacman -S --needed --noconfirm nvidia nvidia-utils nvidia-settings
-
-# 8️⃣ Install yay (AUR helper)
+# =========================
+# INSTALL YAY
+# =========================
 cd ~
+rm -rf yay
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
-# 9️⃣ Install AUR packages
-yay -S --noconfirm cava google-chrome obsidian zsh-theme-powerlevel10k-git
+# =========================
+# AUR PACKAGES
+# =========================
+yay -S --noconfirm cava google-chrome obsidian zsh-theme-powerlevel10k-git || echo "Some AUR packages failed"
 
-# 10️⃣ Set environment variable for Qt5 theme
-echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment > /dev/null
+# =========================
+# ENVIRONMENT
+# =========================
+echo 'QT_QPA_PLATFORMTHEME=qt5ct' | sudo tee -a /etc/environment
 
-# 11️⃣ Create standard directories
+# =========================
+# DIRECTORIES
+# =========================
 mkdir -p ~/Downloads ~/Images ~/Music ~/Videos ~/Documents
+mkdir -p ~/.config
 
-# 12️⃣ Create configuration directories
-mkdir -p ~/.config/bspwm ~/.config/sxhkd ~/.config/flameshot ~/.config/gtk-3.0 \
-         ~/.config/picom ~/.config/polybar ~/.config/ranger ~/.config/rofi \
-         ~/.config/alacritty ~/.config/nitrogen
+# =========================
+# COPY CONFIGS (STRICT)
+# =========================
+echo "Copying configs..."
 
-# 13️⃣ Copy configuration files (if they exist)
-cp -r ./config/bspwm/* ~/.config/bspwm/ 2>/dev/null
-cp -r ./config/sxhkd/* ~/.config/sxhkd/ 2>/dev/null
-cp -r ./config/flameshot/* ~/.config/flameshot/ 2>/dev/null
-cp -r ./config/gtk-3.0/* ~/.config/gtk-3.0/ 2>/dev/null
-cp -r ./config/picom/* ~/.config/picom/ 2>/dev/null
-cp -r ./config/polybar/* ~/.config/polybar/ 2>/dev/null
-cp -r ./config/ranger/* ~/.config/ranger/ 2>/dev/null
-cp -r ./config/rofi/* ~/.config/rofi/ 2>/dev/null
-cp -r ./config/alacritty/* ~/.config/alacritty/ 2>/dev/null
-cp -r ./config/nitrogen/* ~/.config/nitrogen/ 2>/dev/null
+cp -r ./config/* ~/.config/
+cp ./xinitrc ~/.xinitrc
 
-# 14️⃣ Copy additional scripts and files
-cp -r bin/ ~/ 2>/dev/null
-cp ./xinitrc ~/.xinitrc 2>/dev/null
-cp ./gtkrc-2.0 ~/.gtkrc-2.0 2>/dev/null
+# =========================
+# PERMISSIONS
+# =========================
+chmod +x ~/.config/bspwm/bspwmrc
+chmod +x ~/.config/sxhkd/sxhkdrc
+chmod +x ~/.xinitrc
 
-# 15️⃣ Update font cache
+# =========================
+# FONTS CACHE
+# =========================
 fc-cache -fv
 
-# 16️⃣ Install themes
-mkdir -p ~/.themes
-cp -r ./themes/* ~/.themes/ 2>/dev/null
+# =========================
+# ENABLE SERVICES
+# =========================
+sudo systemctl enable lightdm
 
-# 17️⃣ Make scripts executable
-chmod +x ~/.config/bspwm/bspwmrc ~/.config/sxhkd/sxhkdrc ~/bin/* 2>/dev/null
-
-# 18️⃣ Install Oh My Zsh
+# =========================
+# ZSH
+# =========================
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
 
-echo -e "${GREEN}Installation completed. Please restart your session or run startx.${RESET}"
+# =========================
+# DONE
+# =========================
+echo "Installation completed."
+echo "Check log: $LOG"
+echo "Reboot and run: startx"
